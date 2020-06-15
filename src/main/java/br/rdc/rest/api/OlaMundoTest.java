@@ -70,6 +70,23 @@ public class OlaMundoTest {
 		assertThat("Maria", anyOf(is("Maria"),is("João")));// Verifica se é Maria OU João
 		assertThat("Catarina", allOf(startsWith("Cat"), endsWith("ina"),containsString("ar")));//Valida se o nome se inicia com "Cat", termina com "ina" e se contém "ar"
 	}	
+	
+	@Test
+	public void devoValidarBody() 
+	{
+		
+		given()// pré- condição
+		.when()// Ação
+			.get("http://restapi.wcaquino.me/ola")
+		.then()// Assertivas
+			.statusCode(200)
+			.body(is("Ola Mundo!"))
+			.body(containsString("Mundo"))
+			.body(is(not(nullValue())));
+		
+		
+		
+	}
 			
 		
 
